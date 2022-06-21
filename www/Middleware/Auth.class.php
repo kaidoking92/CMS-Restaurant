@@ -4,7 +4,7 @@ namespace App\Middleware;
 
 use App\Core\Middleware;
 
-class AuthMiddleware extends MiddleWare
+class Auth extends MiddleWare
 {
     public function __construct()
     {
@@ -16,7 +16,7 @@ class AuthMiddleware extends MiddleWare
     //Function to check if user is logged in by checking if session auth is set
     public function middleware()
     {
-
+        echo "auth middleware";
         //Check if session auth is set
         if(!isset($_SESSION['auth'])){
             //Redirect to login page

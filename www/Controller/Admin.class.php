@@ -7,9 +7,9 @@ class Admin
 {
     public function __construct()
     {
-        if(!Auth::check()){
-            header('Location: http://localhost/login');
-        }
+        // if(!Auth::check()){
+        //     header('Location: http://localhost/login');
+        // }
     }
 
     public function dashboard()

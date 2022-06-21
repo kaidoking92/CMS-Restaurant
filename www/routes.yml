@@ -6,6 +6,7 @@
   controller: main
   action: contact
 
+
 /login:
   controller: user
   action: login
@@ -13,7 +14,6 @@
 /logout:
   controller: user
   action: logout
-  middleware: auth
 
 /register:
   controller: user
@@ -30,6 +30,7 @@
 /dashboard:
   controller: admin
   action: dashboard
+  middleware: auth
   security:
     - admin
     - user

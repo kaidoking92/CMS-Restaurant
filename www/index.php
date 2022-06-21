@@ -38,6 +38,26 @@ if( empty($routes[$uri]) ||  empty($routes[$uri]["controller"])  ||  empty($rout
 $controller = ucfirst(strtolower($routes[$uri]["controller"]));
 $action = strtolower($routes[$uri]["action"]);
 
+if(!empty($routes[$uri]["middleware"])){
+    $middleware = strtolower($routes[$uri]["middleware"]);
+
+    $middlewareFile = "Middleware/".$middleware.".class.php";
+
+    if(!file_exists($middlewareFile)){
+        die("Le middleware ".$middlewareFile." n'existe pas");
+    }
+
+    include $middlewareFile;
+    $objectMiddleware = new $middleware();
+
+    $objectMiddleware->middleware();
+
+    
+
+
+}
+
+
 
 /*
  *
@@ -46,6 +66,7 @@ $action = strtolower($routes[$uri]["action"]);
  *  Sinon rediriger vers la home ou la page de login
  *
  */
+
 
 
 $controllerFile = "Controller/".$controller.".class.php";
