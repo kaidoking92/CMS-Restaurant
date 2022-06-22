@@ -1,0 +1,60 @@
+.button {
+	display: inline-block;
+	padding: 1em 2em;
+	color: $white;
+	background-color: $grey;
+	text-transform: uppercase;
+	border: none;
+	transition: background-color 0.3s;
+	cursor: pointer;
+
+	&:hover {
+		background-color: lighten($grey, 10%);
+	}
+
+	&--success {
+		background-color: $green;
+
+		&:hover {
+			background-color: lighten($green, 10%);
+		}
+	}
+
+	&--alert {
+		background-color: $red;
+
+		&:hover {
+			background-color: lighten($red, 10%);
+		}
+	}
+
+	&--white {
+		font-family: $font4;
+		font-weight: 700;
+		border-radius: 30px;
+		background-color: $white;
+		color: black;
+		border: 1px solid $purple;
+		text-transform: unset;
+		padding: .5em 1em;
+
+		&:hover {
+			background-color: darken($white, 30%);
+		}
+	}
+
+	&--dark {
+		font-family: $font4;
+		font-weight: 700;
+		border-radius: 30px;
+		background-color: $dark-grey;
+		color:$white;
+		border: 1px solid $purple;
+		text-transform: unset;
+		padding: .5em 1em;
+
+		&:hover {
+			background-color: lighten($dark-grey, 10%);
+		}
+	}
+}
