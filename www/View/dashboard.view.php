@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Design guide</title>
-		<link rel="stylesheet" type="text/css" href="dist/main.css">
+		<link rel="stylesheet" type="text/css" href="public/dist/main.css">
 		<script src="https://kit.fontawesome.com/f3633012bb.js" crossorigin="anonymous"></script>
 	</head>
 	<script type="text/javascript" src="dist/main.js"></script>
@@ -13,6 +13,7 @@
 				<span class="title_navbar">Nom du site</span>
 				<span class="profil_pic">
 					photo
+                    <?php echo $user->getFirstname() ?>
 				</span>
 			</div>
 		</header>
