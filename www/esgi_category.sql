@@ -34,6 +34,13 @@ CREATE TABLE `esgi_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Déchargement des données de la table `esgi_category`
+--
+
+INSERT INTO `esgi_category` (`id`, `name`, `color`) VALUES
+(1, 'Produit', 'FFFFFF');
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -51,7 +58,7 @@ ALTER TABLE `esgi_category`
 -- AUTO_INCREMENT pour la table `esgi_category`
 --
 ALTER TABLE `esgi_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

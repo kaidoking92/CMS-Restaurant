@@ -58,7 +58,10 @@ class CategoryController {
                         $categorySecurity = new CategorySecurity();
                         $category = $categorySecurity->findById($_POST['category_id']);
 
-                        if($userRole == 'admin'){ //Si l'utilisateur connecté est un admin, alors on accepte la suppression
+                        if($category->getId() == 1){
+                            echo "Impossible de supprimer la catégorie par défaut !";
+                            header('Location: /categories?fail');
+                        }else if($userRole == 'admin'){ //Si l'utilisateur connecté est un admin, alors on accepte la suppression
                             if($category->delete($_POST['category_id'])){
                                 header('Location: /categories?success');
                             }else{
