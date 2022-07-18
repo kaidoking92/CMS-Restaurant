@@ -15,6 +15,7 @@
                     <p>Tous les produits</p>
                 </div>
             </div>
+            <a href="/product-register">Ajouter un produit</a>
             <div>
                 <ul>
                     <?php foreach ($products as $product): ?>

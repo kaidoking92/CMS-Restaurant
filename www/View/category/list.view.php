@@ -8,6 +8,7 @@
     <body>
 
         <h1>Liste des catégories</h1>
+        <a href="/category-register">Ajouter une catégorie</a>
         <ul>
             <?php foreach ($categories as $category): ?>
                 <li>
