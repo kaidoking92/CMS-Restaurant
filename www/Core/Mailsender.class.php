@@ -23,7 +23,7 @@ class Mailsender
             $this->mail->IsSMTP();
             $this->mail->Host = HOSTMAIL;
             $this->mail->SMTPAuth = true;
-            $this->mail->Port = 2525;
+            $this->mail->Port = 587;
             $this->mail->Username = MAILUSERNAME;
             $this->mail->Password = MAILPWD;
             $this->mail->setFrom(SETMAIL);
