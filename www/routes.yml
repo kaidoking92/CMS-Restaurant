@@ -81,7 +81,8 @@
   controller: user
   action: showprofile
   role:
-    - none
+    - user
+    - admin
 
 /profile-editpassword:
   controller: user
@@ -245,3 +246,9 @@
   action: showAllCheckout
   role:
     - admin
+
+/showallproducts:
+  controller: frontproduct
+  action: showAllProduct
+  role:
+    - none

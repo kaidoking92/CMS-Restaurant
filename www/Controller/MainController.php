@@ -17,15 +17,8 @@ class MainController {
 
     public function home()
     {
-        echo "Page d'accueil";
-        if(isset($_SESSION['auth']) && !empty($_SESSION['auth'])){
-            echo "<br>";
-            echo "Bienvenue ".$_SESSION['email'];
-            echo "<br>";
-            echo " Role actuel : ".$_SESSION['role'];
-            echo "<br>";
-            echo "<a href='/shoppingCart'><button>Panier</button></a>";
-        }
+        $view = new View("home");
+        
     }
 
 

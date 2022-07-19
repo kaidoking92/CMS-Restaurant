@@ -70,20 +70,21 @@ class Checkout extends Sql
 
     public function getCheckoutForm(): array
     {   //Formulaire un peu inutile, mais c'est surtout pour le futur token CSRF
+
         return [
-            "config"=>[
-                "method"=>"POST",
-                "action"=>"checkout",
-                "submit"=>"Acheter"
-            ],
-            'inputs'=>[
-                "user_id"=>[
-                    "type"=>"hidden",
-                    "required"=>true,
-                    "value" => $_SESSION['auth']
+                "config"=>[
+                    "method"=>"POST",
+                    "action"=>"checkout",
+                    "submit"=>"Acheter"
+                ],
+                'inputs'=>[
+                    "user_id"=>[
+                        "type"=>"hidden",
+                        "required"=>true,
+                        "value" => isset($_SESSION['auth'])?$_SESSION['auth']:'none'
+                    ]
                 ]
-            ]
-        ];
+            ];
     }
 
     public function getAllCheckout()
