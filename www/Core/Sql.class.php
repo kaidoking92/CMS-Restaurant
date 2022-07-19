@@ -190,6 +190,17 @@ abstract class Sql
 
     }
 
+    public function getQuantityByDate(string $columnDate)
+    {
+        $sql = "SELECT DATE(" . $columnDate . ") as date, COUNT(*) as quantity FROM " . $this->table . " GROUP BY DATE(" . $columnDate . ");";
+        
+        $query = $this->pdo->query($sql);
+
+        $resultQuery = $query->fetchAll();
+
+        return $resultQuery;
+    }
+
     //Function Find
 
 

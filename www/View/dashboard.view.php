@@ -1,28 +1,17 @@
-<script src="/lib/amcharts5/index.js"></script>
-<script src="/lib/amcharts5/xy.js"></script>
+<script src="/public/vendor/amcharts5/index.js"></script>
+<script src="/public/vendor/amcharts5/xy.js"></script>
 <h1>Dashboard</h1>
 
 <div id="main-chart" style="width: 100%;
   height: 500px;
-max-width: 100%"></div>
+max-width: 70%; margin: 0 auto;"><h2>Nombre de commandes par jour</h2></div>
 
 <script type="text/javascript">
 	<?php
 	if(!empty($checkouts)){
 		$data = [];
 		foreach ($checkouts as $checkout) {
-			$date = new DateTimeImmutable($checkout->getCreatedAt());
-			$date = $date->format('d-m-Y');
-			if(!array_key_exists($date, $data)){
-				$data[$date] = 1;
-			}else{
-				$data[$date] += 1;
-			}
-		}
-		$trueData = [];
-		$keys = array_keys($data);
-		foreach($keys as $key){
-			$trueData[] = ['date'=>$key,'value'=>$data[$key]];
+			$data[] = ['date'=>$checkout['date'],'value'=>intval($checkout['quantity'])];
 		}
 	?>
 		// Root
@@ -118,8 +107,8 @@ max-width: 100%"></div>
 
 
 		// Set data
-		var data = <?= json_encode($trueData); ?>;
+		var data = <?= json_encode($data); ?>;
 		series.data.setAll(data);
 		<?php
-	} ?>
+	}  ?>
 </script>

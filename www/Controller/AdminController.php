@@ -16,7 +16,7 @@ class AdminController
     public function dashboard()
     {
         $checkout = new Checkout();
-        $checkouts = $checkout->getAllCheckout();
+        $checkouts = $checkout->getQuantityByDate("createdAt");
 
         $view = new View('dashboard','back'); 
         $view->assign("checkouts", $checkouts);  
