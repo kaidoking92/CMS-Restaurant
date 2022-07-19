@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Core\Auth;
 use App\Core\View;
+use App\Model\Checkout;
 
 
 class AdminController
@@ -14,11 +15,10 @@ class AdminController
 
     public function dashboard()
     {
-        
-        echo "Ceci est un beau dashboard";
-        $view = new View('test','back');
+        $checkout = new Checkout();
+        $checkouts = $checkout->getAllCheckout();
 
-        
+        $view = new View('dashboard','back'); 
+        $view->assign("checkouts", $checkouts);  
     }
-
 }

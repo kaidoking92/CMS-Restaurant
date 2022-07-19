@@ -8,6 +8,7 @@ class Checkout extends Sql
 {
     protected $id;
     protected $id_user;
+    protected $createdAt;
 
     public function __construct()
     {
@@ -44,6 +45,14 @@ class Checkout extends Sql
     public function getIdUser(): ?int
     {
         return $this->id_user;
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getCreatedAt(): ?string
+    {
+        return $this->createdAt;
     }
 
     //  /**
@@ -88,7 +97,7 @@ class Checkout extends Sql
 
     public function getAllCheckout()
     {
-        $checkouts = $this->getAll(['id','id_user']);
+        $checkouts = $this->getAll(['id','id_user','createdAt']);
 
         return $checkouts;
     }
