@@ -247,10 +247,26 @@ class UserController {
     {
         
         $userSecurity = new UserSecurity();
-        $users = $userSecurity->getAllUsers();
+        
+        if(isset($_GET['page']) && !empty($_GET['page'])){
+            $currentPage = intval(strip_tags(htmlspecialchars($_GET['page'])));
+            
+            if($currentPage == 0){
+                $currentPage = 1;
+            }
+        }else{
+            $currentPage = 1;
+        }
+
+        $quantity = intval($userSecurity->getAmountRows()['quantity']);
+        $interval = 5;
+        $users = $userSecurity->getAllLimit(($currentPage * $interval) - $interval, $interval);
+
 
         $view = new View("User/list",'back');
         $view->assign("users", $users);
+        $view->assign("currentPage", $currentPage);
+        $view->assign("pages", ceil($quantity/$interval));
         // foreach($users as $user){
         //     echo $user->getFirstname();
         //     echo "<br>";

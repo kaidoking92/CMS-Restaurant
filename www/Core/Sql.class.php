@@ -190,6 +190,42 @@ abstract class Sql
 
     }
 
+    public function getAmountRows()
+    {
+        $sql = "SELECT COUNT(*) AS quantity FROM " . $this->table . ";";
+        $query = $this->pdo->prepare($sql);
+        $query->execute();
+
+        return $query->fetch();
+    }
+
+    public function getAllLimit($from, $to, $columnsToSelect = null)
+    {
+        $queryBuilder = new QueryBuilder();
+        if($columnsToSelect != null && is_array($columnsToSelect)){ // verif if array
+
+            $sql = $queryBuilder
+            ->select($this->table, $columnsToSelect)
+            ->limit($from, $to)
+            ->getQuery();
+        }else{
+            $sql = $queryBuilder
+            ->select($this->table, ['*'])
+            ->limit($from, $to)
+            ->getQuery();
+        }
+
+        $query = $this->pdo->query($sql);
+
+        if($this->class){
+            $resultQuery = $query->fetchAll($this->pdo::FETCH_CLASS,$this->class);
+        }else{
+            $resultQuery = $query->fetchAll($this->pdo::FETCH_CLASS,get_called_class());
+        }
+
+        return $resultQuery;
+    }
+
     //Function Find
 
 

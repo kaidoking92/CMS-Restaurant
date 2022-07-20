@@ -56,7 +56,19 @@ class CheckoutController {
         $product = new ProductModel();
         $user = new UserModel();
 
-        $checkouts = $checkout->getAllCheckout();
+        if(isset($_GET['page']) && !empty($_GET['page'])){
+            $currentPage = intval(strip_tags(htmlspecialchars($_GET['page'])));
+            
+            if($currentPage == 0){
+                $currentPage = 1;
+            }
+        }else{
+            $currentPage = 1;
+        }
+
+        $quantity = intval($checkout->getAmountRows()['quantity']);
+        $interval = 5;
+        $checkouts = $checkout->getAllLimit(($currentPage * $interval) - $interval, $interval);
 
         $checkout_products = new CheckoutProductModel();
 
@@ -65,5 +77,7 @@ class CheckoutController {
         $view->assign("checkout_products", $checkout_products);
         $view->assign("product", $product);
         $view->assign("user", $user);
+        $view->assign("currentPage", $currentPage);
+        $view->assign("pages", ceil($quantity/$interval));
     }
 }

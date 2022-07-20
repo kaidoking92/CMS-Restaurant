@@ -38,10 +38,25 @@ class ProductController {
     {
         
         $product = new ProductModel();
-        $products = $product->getAllProducts();
+        
+        if(isset($_GET['page']) && !empty($_GET['page'])){
+            $currentPage = intval(strip_tags(htmlspecialchars($_GET['page'])));
+            
+            if($currentPage == 0){
+                $currentPage = 1;
+            }
+        }else{
+            $currentPage = 1;
+        }
+
+        $quantity = intval($product->getAmountRows()['quantity']);
+        $interval = 5;
+        $products = $product->getAllLimit(($currentPage * $interval) - $interval, $interval);
 
         $view = new View("Product/list",'back');
         $view->assign("products", $products);
+        $view->assign("currentPage", $currentPage);
+        $view->assign("pages", ceil($quantity/$interval));
         
     }
 
@@ -59,7 +74,7 @@ class ProductController {
                         $product = $productSecurity->findById($_POST['product_id']);
 
                         if($userRole == 'admin'){ //Si l'utilisateur connecté est un admin, alors on accepte la suppression
-                            $picture = "Public/img/product/" . $product->getPicture();
+                            $picture = "public/img/product/" . $product->getPicture();
                             if($product->delete($_POST['product_id'])){
                                 if(file_exists($picture)) {
                                     unlink($picture);
@@ -174,12 +189,27 @@ class ProductController {
                 $products[] = $product;
             }
         }
+        $checkout = new CheckoutModel();
 
-        $checkout = new CheckoutModel();  
+        if(isset($_GET['page']) && !empty($_GET['page'])){
+            $currentPage = intval(strip_tags(htmlspecialchars($_GET['page'])));
+            
+            if($currentPage == 0){
+                $currentPage = 1;
+            }
+        }else{
+            $currentPage = 1;
+        }
+
+        $quantity = count($products);
+        $interval = 5;
+        $checkouts = $checkout->getAllLimit(($currentPage * $interval) - $interval, $interval);  
 
         $view = new View("cart/show",'front');
         $view->assign("products", $products);
         $view->assign("checkout", $checkout);
+        $view->assign("currentPage", $currentPage);
+        $view->assign("pages", ceil($quantity/$interval));
 
        
       

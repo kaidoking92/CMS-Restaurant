@@ -23,5 +23,32 @@
                 <br>
             <?php endforeach; ?>
         </ul>
+        <?php
+        if($pages > 1){
+        ?>
+            <nav>
+                <ul class="pagination">
+                    <?php
+                    if($currentPage != 1){
+                    ?>
+                        <li><a href="/showallproducts?page=<?= $currentPage - 1 ?>">Précédent</a></li>
+                    <?php
+                    }
+                    for($i = 1;$i<=$pages;$i++):
+                    ?>
+                        <li><a href="./showallproducts?page=<?= $i ?>"><?= $i ?></a></li>
+                    <?php
+                    endfor;
+                    if($currentPage != $pages){
+                    ?>
+                        <li><a href="./showallproducts?page=<?= $currentPage + 1 ?>">Suivant</a></li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            </nav>
+        <?php
+        }
+        ?>
     </div>
 </div>

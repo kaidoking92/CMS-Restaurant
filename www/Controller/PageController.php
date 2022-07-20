@@ -14,6 +14,9 @@ class PageController {
 
     public function displayAllPages() {
         $cequetuveux = new Page();
+
+        
+        
         $pages = $cequetuveux->getAllPages();
         $view = new View('page/list');
         $view->assign('pages', $pages);
